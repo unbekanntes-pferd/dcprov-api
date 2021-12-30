@@ -1,0 +1,25 @@
+{
+    "id": 7,
+    "companyName": "string",
+    "customerContractType": "demo",
+    "quotaMax": 0,
+    "quotaUsed": 0,
+    "userMax": 0,
+    "userUsed": 0,
+    "createdAt": "2021-12-26T09:15:21.256Z",
+    "isLocked": false,
+    "trialDaysLeft": 0,
+    "updatedAt": "2021-12-26T09:15:21.256Z",
+    "lastLoginAt": "2021-12-26T09:15:21.256Z",
+    "customerAttributes": {
+      "items": [
+        {
+          "key": "string",
+          "value": "string"
+        }
+      ]
+    },
+    "providerCustomerId": "string",
+    "webhooksMax": 0,
+    "customerUuid": "string"
+  }
