@@ -983,7 +983,7 @@ mod tests {
         let base_url = mockito::server_url();
 
         // mock successful 200 OK response
-        let _res = mock("GET", "/api/v4/provisioning/customers/?limit=500&offset=0")
+        let _res = mock("GET", "/api/v4/provisioning/customers/?limit=1")
             .with_status(200)
             .with_header("content-type", "application/json")
             .create();
@@ -1020,7 +1020,40 @@ mod tests {
         let _res = mock("GET", "/api/v4/provisioning/customers/?limit=500&offset=0")
             .with_status(200)
             .with_header("content-type", "application/json")
-            .with_body_from_file("/Users/oc/Documents/dev/dcprov_api/src/tests/customers.json")
+            .with_body(r#"{
+                "range": {
+                  "offset": 0,
+                  "limit": 0,
+                  "total": 0
+                },
+                "items": [
+                  {
+                    "id": 0,
+                    "companyName": "string",
+                    "customerContractType": "demo",
+                    "quotaMax": 0,
+                    "quotaUsed": 0,
+                    "userMax": 0,
+                    "userUsed": 0,
+                    "createdAt": "2021-12-24T21:18:49.513Z",
+                    "isLocked": false,
+                    "trialDaysLeft": 0,
+                    "updatedAt": "2021-12-24T21:18:49.513Z",
+                    "lastLoginAt": "2021-12-24T21:18:49.513Z",
+                    "customerAttributes": {
+                      "items": [
+                        {
+                          "key": "string",
+                          "value": "string"
+                        }
+                      ]
+                    },
+                    "providerCustomerId": "string",
+                    "webhooksMax": 0,
+                    "customerUuid": "string"
+                  }
+                ]
+              }"#)
             .create();
 
         let res = aw!(provider.get_customers(None, None, None, None, None));
@@ -1053,10 +1086,6 @@ mod tests {
     fn test_get_customer() {
 
         let provider = init_provisioning();
-
-        let path = "/Users/oc/Documents/dev/dcprov_api/src/tests/customer.json";
-
-        let raw_json = fs::read_to_string(path).unwrap();
 
         // mock successful 200 OK response
         let _res = mock("GET", "/api/v4/provisioning/customers/7")
